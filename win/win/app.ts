@@ -1,28 +1,25 @@
-class Greeter {
-    element: HTMLElement;
-    span: HTMLElement;
-    timerToken: number;
-    
-    constructor (element: HTMLElement) { 
-        this.element = element;
-        this.element.innerText += "The time is: ";
-        this.span = document.createElement('span');
-        this.element.appendChild(this.span);
-        this.span.innerText = new Date().toUTCString();
-    }
+// Interface
+interface IPoint {
+    getDist(): number;
+}
 
-    start() {
-        this.timerToken = setInterval(() => this.span.innerText = new Date().toUTCString(), 500);
-    }
+// Module
+module Shapes {
 
-    stop() {
-        clearTimeout(this.timerToken);
+    // Class
+    export class Point implements IPoint {
+        // Constructor
+        constructor (public x: number, public y: number) { }
+
+        // Instance member
+        getDist() { return Math.sqrt(this.x * this.x + this.y * this.y); }
+
+        // Static member
+        static origin = new Point(0, 0);
     }
 
 }
 
-window.onload = () => {
-    var el = document.getElementById('content');
-    var greeter = new Greeter(el);
-    greeter.start();
-};
+// Local variables
+var p: IPoint = new Shapes.Point(3, 4);
+var dist = p.getDist();
