@@ -145,24 +145,12 @@ var WebGLHelper = {
     },
 
     'CreateGLCanvas': function (el, id, replace, okHandler, failHandler) {
-        if (WebGLHelper.IsIE()) {
-            var usePlugin;
-            try {
-                usePlugin = WebGLRenderingContext.hasOwnProperty('iewebgl');
-            } catch (e) {
-                usePlugin = true;
-            }
 
-            if (usePlugin) {
-                return WebGLHelper.CreatePluginCanvas(el, id, replace, okHandler, failHandler);
-            }
-            else {
-                return WebGLHelper.CreateNativeCanvas(el, id, replace, okHandler, failHandler);
-            }
-        }
-        else {
-            return WebGLHelper.CreateNativeCanvas(el, id, replace, okHandler, failHandler);
-        }
+    	var native = !WebGLHelper.IsIE() || typeof WebGLRenderingContext !== 'undefined' && !WebGLRenderingContext.hasOwnProperty('iewebgl');
+
+    	var init_func = native ? WebGLHelper.CreateNativeCanvas : WebGLHelper.CreatePluginCanvas;
+
+    	return init_func(el, id, replace, okHandler, failHandler);
     },
 
     'CreateGLCanvasInline': function (id, okHandler, failHandler) {

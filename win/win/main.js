@@ -2,7 +2,7 @@ var canvas;
 var gl;
 
 var intervalId;
-var drawSceneInterval = 10;
+var drawSceneInterval = 0;
 
 var vertexPositionBuffer;
 var vertexNormalBuffer;
@@ -60,7 +60,6 @@ function GetCanvas2D() {
 }
 
 function DrawToCanvas2D() {
-    //from https://developer.mozilla.org/
 
     var now = new Date();
     var context = canvas2D.getContext('2d');
@@ -71,7 +70,7 @@ function DrawToCanvas2D() {
     context.fillRect(0, 0, canvas2D.width, canvas2D.height);
 
     context.translate(canvas2D.width / 2, canvas2D.height / 2);
-    context.scale(0.4, 0.4);
+    context.scale(1.3, 1.3);
     context.rotate(-Math.PI / 2);
     context.strokeStyle = "black";
     context.fillStyle = "white";
@@ -312,11 +311,15 @@ function InitShaders() {
 function UpdateTexture() {
     DrawToCanvas2D();
 
+    var ext = gl.getExtension("EXT_texture_filter_anisotropic");
+    
     gl.bindTexture(gl.TEXTURE_2D, texture);
     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, canvas2D);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
+    if (!!ext)
+    	gl.texParameterf(gl.TEXTURE_2D, ext.TEXTURE_MAX_ANISOTROPY_EXT, 4);
     gl.generateMipmap(gl.TEXTURE_2D);
     gl.bindTexture(gl.TEXTURE_2D, null);
 }
@@ -384,9 +387,18 @@ function DrawScene() {
     gl.drawElements(gl.TRIANGLES, 36, gl.UNSIGNED_SHORT, 0);
 }
 
+var last_tick = -1;
+
 function MakeFrame() {
     OnBeginScene();
-    UpdateTexture();
+
+    var tick = new Date().getSeconds();
+
+    if (tick != last_tick) {
+    	UpdateTexture();
+    	last_tick = tick;
+    }
+	
     DrawScene();
     UpdateRotation();
     OnEndScene();

@@ -39,6 +39,7 @@
     <Content Include="lib\iegl\sylvester.js" />
     <Content Include="lib\iegl\webglhelper.js" />
     <Content Include="main.js" />
+    <Content Include="vertex_programs.js" />
     <Content Include="web.config" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
