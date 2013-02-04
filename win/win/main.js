@@ -357,7 +357,9 @@ function UpdateRotation() {
 }
 
 function DrawScene() {
-    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+	gl.clearColor(0.0, 1.0, 0.0, 1.0);
+
+	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
     gl.bindBuffer(gl.ARRAY_BUFFER, vertexPositionBuffer);
     gl.vertexAttribPointer(vertexPositionAttribute, 3, gl.FLOAT, false, 0, 0);
@@ -372,7 +374,7 @@ function DrawScene() {
 
     var worldMatrix = MatrixRotate(MatrixIdentity(), rotationFactor, [1, 0, 1]);
     var viewMatrix = makeLookAt(0, 0, 6, 0, 0, 0, 0, 1, 0);
-    var projMatrix = makePerspective(45, 640.0 / 480.0, 0.1, 100.0);
+    var projMatrix = makePerspective(45, gl.drawingBufferWidth / gl.drawingBufferHeight, 0.1, 100.0);
     SetUniforms(worldMatrix, viewMatrix, projMatrix, [0.0, 1.0, 1.0]);
 
     gl.activeTexture(gl.TEXTURE0);
