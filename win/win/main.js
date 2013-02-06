@@ -2,7 +2,7 @@ var canvas;
 var gl;
 
 var intervalId;
-var drawSceneInterval = 1000/60;
+var drawSceneInterval = 1; //1000/60;
 
 var vertexPositionBuffer;
 var vertexNormalBuffer;
@@ -92,7 +92,7 @@ function DrawToCanvas2D() {
     context.save();
     context.lineWidth = 5;
     for (i = 0; i < 60; i++) {
-        if (i % 5 != 0) {
+        if (i % 5 !== 0) {
             context.beginPath();
             context.moveTo(117, 0);
             context.lineTo(120, 0);
@@ -167,7 +167,7 @@ function OnCanvasCreated(canvasElement, elementId) {
     canvasElement.style.width = "100%";
     canvasElement.style.height = "100%";
 
-    gl = canvasElement.getContext('webgl', {});
+    gl = canvasElement.getContext('experimental-webgl', {});
 
     if (gl == null) {
         OnCanvasFailed(null, elementId);
@@ -351,7 +351,7 @@ function OnEndScene() {
 }
 
 function UpdateRotation() {
-    var currentTime = (new Date).getTime();
+    var currentTime = new Date().getTime();
     if (lastRotationUpdateTime) {
         var delta = currentTime - lastRotationUpdateTime;
         rotationFactor += (30 * delta) / 1000.0;
@@ -361,7 +361,7 @@ function UpdateRotation() {
 }
 
 function DrawScene() {
-	gl.clearColor(0.0, 0.6, 0.0, 1.0);
+	gl.clearColor(0.0, 0.0, 1.0, 1.0);
 
 	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 

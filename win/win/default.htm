@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+	<title></title>
     <link rel="stylesheet" type="text/css" href="css/main.css"/>
 
     <!-- Vertex shader program -->
@@ -44,6 +45,7 @@
     </script>
 
 	<script src="script_loader.js"></script>
+	<script src="app.js"></script>
 
 </head>
 
@@ -51,7 +53,7 @@
     <div id="WebGLCanvasContainer">
         <div id="FPSCounter"></div>
         <div id="Canvas2DContainer">
-            <canvas id="Canvas2D" width="512px" height="512px"></canvas>
+            <canvas id="Canvas2D" width="512" height="512"></canvas>
         </div>
         <script id="WebGLCanvasCreationScript" type="text/javascript">
         	WebGLHelper.CreateGLCanvasInline('WebGLCanvas', OnCanvasCreated);

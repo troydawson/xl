@@ -1,11 +1,11 @@
 ﻿[
-	'lib/iegl/webglhelper.js',
-	'lib/iegl/EventHandling.js',
-	'lib/iegl/Common.js',
-	'lib/iegl/FPSCounter.js',
-	'lib/iegl/sylvester.js',
-	'lib/iegl/glUtils.js',
-	'lib/iegl/GeometryUtils.js',
-	'lib/iegl/MatrixUtils.js',
+	'lib/webglhelper.js',
+	'lib/EventHandling.js',
+	'lib/Common.js',
+	'lib/FPSCounter.js',
+	'lib/sylvester.js',
+	'lib/glUtils.js',
+	'lib/GeometryUtils.js',
+	'lib/MatrixUtils.js',
 	'main.js'
 ].forEach(function (path, i, list) { document.write('\x3Cscript src="' + path + '">\x3C/script>') });
