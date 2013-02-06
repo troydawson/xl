@@ -34,6 +34,21 @@
     <Content Include="def\three.d.ts" />
     <Content Include="def\webgl.d.ts" />
     <Content Include="lib\glUtils.js" />
+    <Content Include="lib\three.js" />
+    <Content Include="lib\jx.js" />
+    <Content Include="lib\underscore.js" />
+    <TypeScriptCompile Include="lib\utility.ts" />
+    <Content Include="lib\utility.js">
+      <DependentUpon>utility.ts</DependentUpon>
+    </Content>
+    <Content Include="resources\background.png" />
+    <Content Include="resources\ball.png" />
+    <Content Include="resources\board_info.txt" />
+    <Content Include="resources\Default-Portrait.png" />
+    <Content Include="resources\maze_a8.png" />
+    <Content Include="resources\Namco-Logo.jpg" />
+    <Content Include="resources\pacman notes.txt" />
+    <Content Include="resources\spritepage_00.png" />
     <Content Include="script_loader.js" />
     <Content Include="lib\Common.js" />
     <Content Include="lib\EventHandling.js" />
@@ -47,6 +62,8 @@
     <Content Include="app.js.map">
       <DependentUpon>app.ts</DependentUpon>
     </Content>
+    <Content Include="resources\Joystix.ttf" />
+    <Content Include="resources\spritepage_00.tga" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>

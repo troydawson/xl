@@ -1,0 +1,55 @@
+﻿{
+	"name": "original",
+	"rows": 31,
+	"cols": 28,
+	"board": "
+		XXXXXXXXXXXXXXXXXXXXXXXXXXXX
+		X............XX............X
+		X.XXXX.XXXXX.XX.XX.XX.XXXX.X
+		XOXXXX.XXXXX.XX.XX.XX.XXXXOX
+		X.XXXX.XXXXX.XX.XX.XX.XXXX.X
+		X..........................X
+		X.XXXX.XX.XXXXXXXX.XX.XXXX.X
+		X.XXXX.XX.XXXXXXXX.XX.XXXX.X
+		X......XX....XX....XX......X
+		XXXXXX.XXXXX~XX~XX.XX.XXXXXX
+		~~~~~X.XXXXX~XX~XX.XX.X~~~~~
+		~~~~~X.XX~~~~①~~~~.XX.X~~~~~
+		~~~~~X.XX~XXX~~XXX.XX.X~~~~~
+		XXXXXX.XX~X~~~~~~X.XX.XXXXXX
+		<TTTTT.~~~X②~③~④~X.~~.TTTTT>
+		XXXXXX.XX~X~~~~~~X.XX.XXXXXX
+		~~~~~X.XX~XXXXXXXX.XX.X~~~~~
+		~~~~~X.XX~~~~F~~~~.XX.X~~~~~
+		~~~~~X.XX~XXXXXXXX.XX.X~~~~~
+		XXXXXX.XX~XXXXXXXX.XX.XXXXXX
+		X............XX............X
+		X.XXXX.XXXXX.XX.XX.XX.XXXX.X
+		X.XXXX.XXXXX.XX.XX.XX.XXXX.X
+		XO..XX.......H~.......XX..OX
+		XXX.XX.XX.XXXXXXXX.XX.XX.XXX
+		XXX.XX.XX.XXXXXXXX.XX.XX.XXX
+		X......XX....XX....XX......X
+		X.XXXXXXXXXX.XX.XXXXXXXXXX.X
+		X.XXXXXXXXXX.XX.XXXXXXXXXX.X
+		X..........................X
+		XXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+	"tiles":
+	{
+		"~": "void",
+		"X": "wall",
+		".": "dot",
+		"O": "power",
+		"H": "home",
+		"①": "ghost1",
+		"②": "ghost2",
+		"③": "ghost3",
+		"④": "ghost4",
+		"F": "fruit",
+		"T": "tunnel",
+		"<": "left_exit",
+		">": "right_exit"
+	}
+}
+		
+		

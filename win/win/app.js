@@ -1,4 +1,4 @@
-/// <reference path="def/webgl.d.ts" />
+﻿/// <reference path="def/webgl.d.ts" />
 /// <reference path="def/three.d.ts" />
 var WebGLHelper = {
     CreateNativeCanvas: function (element, id, replace, okHandler, failHandler) {
@@ -79,4 +79,15 @@ var WebGLHelper = {
         return init_func(document.getElementById("WebGLCanvasCreationScript"), id, true, okHandler, failHandler);
     }
 };
+;
+var App = (function () {
+    function App(board_info) {
+        this.board_info = board_info;
+    }
+    App.prototype.update = function () {
+        var map = this.board_info.board;
+        var g4 = this.board_info.tiles['④'];
+    };
+    return App;
+})();
 //@ sourceMappingURL=app.js.map

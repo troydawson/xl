@@ -1,4 +1,4 @@
-/// <reference path="def/webgl.d.ts" />
+﻿/// <reference path="def/webgl.d.ts" />
 /// <reference path="def/three.d.ts" />
 
 var WebGLHelper = {
@@ -80,5 +80,16 @@ var WebGLHelper = {
 		var init_func = native ? WebGLHelper.CreateNativeCanvas : WebGLHelper.CreatePluginCanvas;
 
 		return init_func(document.getElementById("WebGLCanvasCreationScript"), id, true, okHandler, failHandler);
+	}
+}
+
+interface BoardInfo { name: string; rows: number; cols: number; board: string; tiles: Object; };
+
+class App {
+	constructor(public board_info: BoardInfo) { }
+
+	update(): void {
+		var map = this.board_info.board;
+		var g4 = <string> this.board_info.tiles['④'];
 	}
 }

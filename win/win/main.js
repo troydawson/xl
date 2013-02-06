@@ -361,7 +361,7 @@ function UpdateRotation() {
 }
 
 function DrawScene() {
-	gl.clearColor(0.0, 0.0, 1.0, 1.0);
+	gl.clearColor(1.0, 0.0, 0.0, 1.0);
 
 	gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
@@ -390,15 +390,22 @@ function DrawScene() {
 
 var last_tick = -1;
 
+var app = null;
+
+jx.load('json:resources/board_info.txt', function (data) { app = new App(data) });
+
 function MakeFrame() {
-    OnBeginScene();
+	OnBeginScene();
 
-    var tick = new Date().getSeconds();
+	var tick = new Date().getSeconds();
 
-    if (tick != last_tick) {
-    	UpdateTexture();
-    	last_tick = tick;
-    }
+	if (tick != last_tick) {
+		UpdateTexture();
+		last_tick = tick;
+	}
+
+    if (!!app)
+    	app.update();
 	
     DrawScene();
     UpdateRotation();
