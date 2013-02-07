@@ -23,3 +23,65 @@ class ParseURI {
 		return uri;
 	}
 };
+
+//V3.01.A - http://www.openjs.com/scripts/jx/
+
+class Util {
+
+	private static getHTTPObject(): any {
+		var http = null;
+		//Use IE's ActiveX items to load the file.
+		if (typeof ActiveXObject != 'undefined') {
+			try { http = new ActiveXObject("Msxml2.XMLHTTP"); }
+			catch (e) {
+				try { http = new ActiveXObject("Microsoft.XMLHTTP"); }
+				catch (E) { http = false; }
+			}
+			//If ActiveX is not available, use the XMLHttpRequest of Firefox/Mozilla etc. to load the document.
+		} else if (XMLHttpRequest) {
+			try { http = new XMLHttpRequest(); }
+			catch (e) { http = false; }
+		}
+		return http;
+	}
+
+	static load(url: string, callback: (data:string) => any) {
+	
+		if (!url || !callback) return;
+
+		var http = this.getHTTPObject(); //The XMLHttpRequest object is recreated at every call - to defeat Cache problem in IE
+
+		if (!http) return;
+
+		if (http.overrideMimeType) http.overrideMimeType('text/xml');
+
+		//Kill the Cache problem in IE:
+		var now = "uid=" + new Date().getTime();
+		url += (url.indexOf("?") + 1) ? "&" : "?";
+		url += now;
+
+		var file_info = new ParseURI(url).parse();
+
+		http.open("GET", file_info['path'], true);
+
+		http.onreadystatechange = function () {
+
+			if (http.readyState != 4)
+				return;
+
+			if (http.status != 200) {
+				console.log(http.status);
+				return;
+			}
+
+			var result = http.responseText || "";
+
+			if (file_info['protocol'] == "json")
+				result = JSON.parse(result.replace(/[\t\n\r]/g, ""));
+
+			if (callback) callback(result);
+		}
+
+		http.send(null);
+	}
+}

@@ -392,7 +392,7 @@ var last_tick = -1;
 
 var app = null;
 
-jx.load('json:resources/board_info.txt', function (data) { app = new App(data) });
+Util.load('json:resources/board_info.txt', function (data) { app = new App(data) });
 
 function MakeFrame() {
 	OnBeginScene();

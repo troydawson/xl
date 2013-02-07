@@ -86,7 +86,7 @@ var WebGLHelper = {
 interface BoardInfo { name: string; rows: number; cols: number; board: string; tiles: Object; };
 
 class App {
-	constructor(public board_info: BoardInfo) { }
+	constructor(public board_info: BoardInfo) { console.log("app start: " + board_info.name) }
 
 	update(): void {
 		var map = this.board_info.board;

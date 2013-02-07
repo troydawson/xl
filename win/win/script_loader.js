@@ -1,7 +1,6 @@
 ﻿[
 	'lib/underscore.js',
-	'lib/jx.js',
-	'lib/utility.js',
+	'lib/Utility.js',
 	'lib/EventHandling.js',
 	'lib/Common.js',
 	'lib/FPSCounter.js',

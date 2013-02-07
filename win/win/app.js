@@ -83,6 +83,7 @@ var WebGLHelper = {
 var App = (function () {
     function App(board_info) {
         this.board_info = board_info;
+        console.log("app start: " + board_info.name);
     }
     App.prototype.update = function () {
         var map = this.board_info.board;
