@@ -2,7 +2,6 @@ var canvas;
 var gl;
 
 var intervalId;
-var drawSceneInterval = 1; //1000/60;
 
 var vertexPositionBuffer;
 var vertexNormalBuffer;
@@ -24,7 +23,7 @@ var lastRotationUpdateTime = 0;
 var fpsCounter = new FPSCounter();
 
 function ContextLostHandler() {
-    clearInterval(intervalId);
+	window.cancelAnimationFrame(intervalId);
     fpsCounter.stop();
 
     gl.deleteBuffer(vertexPositionBuffer);
@@ -42,7 +41,7 @@ function ContextRestoredHandler() {
     InitBuffers();
     InitTextures();
 
-    intervalId = setInterval(MakeFrame, drawSceneInterval);
+    intervalId = window.requestAnimationFrame(MakeFrame);
     fpsCounter.run();
 }
 
@@ -183,7 +182,8 @@ function OnCanvasCreated(canvasElement, elementId) {
 
     fpsCounter.createElement(document.getElementById("FPSCounter"));
     fpsCounter.run();
-    intervalId = setInterval(MakeFrame, drawSceneInterval);
+
+    intervalid = requestAnimationFrame(MakeFrame);
 }
 
 function OnCanvasFailed(canvasElement, elementId) {
@@ -388,20 +388,19 @@ function DrawScene() {
     gl.drawElements(gl.TRIANGLES, 36, gl.UNSIGNED_SHORT, 0);
 }
 
-var last_tick = -1;
+var last_time = -99999;
 
 var app = null;
 
 Util.load('json:resources/board_info.txt', function (data) { app = new App(data) });
 
-function MakeFrame() {
+function MakeFrame(time) {
+
 	OnBeginScene();
 
-	var tick = new Date().getSeconds();
-
-	if (tick != last_tick) {
+	if (time - last_time > 1000) {
 		UpdateTexture();
-		last_tick = tick;
+		last_time = time;
 	}
 
     if (!!app)
@@ -410,4 +409,7 @@ function MakeFrame() {
     DrawScene();
     UpdateRotation();
     OnEndScene();
+
+    intervalid = window.requestAnimationFrame(MakeFrame);
+
 }
